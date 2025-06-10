@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DJ Alex et Gwen Photography</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /*------------------------------------*\
+            VARIABLES
+        \*------------------------------------*/
+        :root {
+            /* Couleurs principales */
+            --primary-color: #9c7c38;    /* Or/Doré pour les accents */
+            --dark-bg: #000;             /* Fond noir principal */
+            --text-light: #fff;          /* Texte clair */
+            --text-muted: #ccc;          /* Texte atténué */
+            
+            /* Dimensions */
+            --section-padding: 5rem 0;
+            --container-width: 1200px;
+            
+            /* Effets */
+            --transition-speed: 0.3s;
+            --hover-lift: translateY(-10px);
+            --gold-shadow: 0 5px 15px rgba(156, 124, 56, 0.3);
+        }
+
+        /*------------------------------------*\
+            RESET & BASE
+        \*------------------------------------*/
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /*------------------------------------*\
+            NAVIGATION
+        \*------------------------------------*/
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(156, 124, 56, 0.3);
+        }
+
+        .nav-container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        /* Logo de navigation */
+        .nav-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .nav-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Menu de navigation */
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width var(--transition-speed) ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /*------------------------------------*\
+            HEADER
+        \*------------------------------------*/
+        header {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('Festival-DJ-Lyon-28.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .header-content {
+            max-width: 800px;
+            padding: 2rem;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+        }
+
+        /* Logo principal */
+        .logo-container {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(156, 124, 56, 0.3);
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.1);
+        }
+
+        .logo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /*------------------------------------*\
+            SECTIONS SERVICES
+        \*------------------------------------*/
+        .services {
+            padding: var(--section-padding);
+        }
+
+        .services-container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        /* Cartes de services */
+        .service-card {
+            background: #111;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform var(--transition-speed) ease;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        .service-card:hover {
+            transform: var(--hover-lift);
+        }
+
+        .service-image {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
+        }
+
+        /* Contenu des cartes */
+        .service-content {
+            padding: 2rem;
+        }
+
+        .service-content h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-content p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        /*------------------------------------*\
+            LISTES ET ÉLÉMENTS
+        \*------------------------------------*/
+        .features-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .features-list li {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .features-list li::before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        /*------------------------------------*\
+            BOUTONS ET INTERACTIONS
+        \*------------------------------------*/
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all var(--transition-speed) ease;
+            border: 2px solid transparent;
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            border-color: var(--primary-color);
+            transform: var(--hover-lift);
+            box-shadow: var(--gold-shadow);
+        }
+
+        /*------------------------------------*\
+            FOOTER
+        \*------------------------------------*/
+        footer {
+            background-color: #111;
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /*------------------------------------*\
+            ANIMATIONS
+        \*------------------------------------*/
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /*------------------------------------*\
+            MEDIA QUERIES
+        \*------------------------------------*/
+        @media (max-width: 768px) {
+            /* Ajustements pour mobile */
+            .services-container {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content h1 {
+                font-size: 2rem;
+            }
+
+            .logo-container {
+                width: 120px;
+                height: 120px;
+            }
+
+            .service-image {
+                height: 200px;
+            }
+
+            /* Menu mobile */
+            .menu-toggle {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                cursor: pointer;
+                padding: 0.5rem;
+            }
+
+            .menu-toggle span {
+                display: block;
+                width: 25px;
+                height: 2px;
+                background-color: var(--text-light);
+                transition: all var(--transition-speed) ease;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                padding: 1rem;
+                text-align: center;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            /* Animation du menu burger */
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            /* Ajustement de la marge du header pour la navigation fixe */
+            header {
+                margin-top: 82px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="logo DJALEX&GWEN.webp" alt="Logo DJ Alex & Gwen">
+            </a>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="dj.html">DJ animations</a></li>
+                <li><a href="bons-cadeaux.html">Bons cadeaux</a></li>
+        <li><a href="photo.html">Services de photographie</a></li>
+        <li><a href="references.html">Références</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+        </div>
+    </nav>
+
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="logo DJALEX&GWEN.webp" alt="Logo DJ Alex & Gwen" class="logo">
+            </div>
+            <h1>DJ Alex et Gwen Photography</h1>
+            <p class="header-text">Découvrez nos services professionnels de DJ et de photographie pour tous vos événements</p>
+        </div>
+  </header>
+
+    <section class="about-section">
+        <div class="about-container">
+            <h2 class="about-title">À propos de DJ Alex et Gwen Photography</h2>
+            <div class="about-content">
+                <div class="about-box">
+                    <div class="about-text-box">
+                        <div class="about-text">
+                            <p>DJ Alex et Gwen Photography est né de notre passion pour la musique et la photographie. Ce qui a commencé comme un loisir est devenu notre vocation : transformer vos événements en souvenirs mémorables.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-box">
+                    <div class="about-text-box">
+                        <div class="about-text">
+                            <p>En tant que DJ expérimentés, nous créons des ambiances sur mesure, avec des playlists adaptées pour chaque instant. En ce qui concerne la photographie, nous saisissons l'essence de chaque moment pour que vous puissiez les revivre pleinement.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-box">
+                    <div class="about-text-box">
+                        <div class="about-text">
+                            <p>Notre mission est claire, faire de chaque célébration une réussite grâce à notre expertise en musique et en image.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </section>
+  
+    <section class="presentation">
+        <div class="presentation-container">
+      <h2>DJ et photographe à Digoin</h2>
+      <p>Avec DJ Alex et Gwen Photography, nous unissons l'art de la musique et de la photographie pour créer des souvenirs inoubliables lors des événements spéciaux des Digoinais. Nous nous investissons pour que chaque détail de votre célébration soit en parfaite harmonie avec vos envies.</p>
+            <a href="contact.html" class="cta-button">Prendre rendez-vous</a>
+        </div>
+    </section>
+
+    <section class="dj-services">
+        <div class="dj-services-container">
+            <div class="dj-service-item">
+                <h2>DJ pour vos soirées</h2>
+                <p>Notre service d'animation DJ est pensé pour apporter une touche de dynamisme à toutes vos célébrations, qu'il s'agisse de mariages, d'anniversaires, de soirées d'entreprise ou d'événements privés</p>
+            </div>
+
+            <div class="dj-service-item">
+        <h2>Animation de mariages</h2>
+                <p>Pour votre mariage, nous vous assurons une animation DJ complète qui s'adapte aux différentes phases de votre journée, de la cérémonie à la soirée dansante</p>
+            </div>
+
+            <div class="dj-service-item">
+        <h2>DJ pour des événements privés et professionnels</h2>
+                <p>Nos services d'animation s'étendent aux fêtes privées et aux événements d'entreprise, où nous mettons l'accent sur la qualité sonore et la personnalisation musicale</p>
+      </div>
+      </div>
+    </section>
+
+    <section class="photography-services">
+        <div class="photography-services-container">
+            <div class="photography-service-item">
+                <h2>Photographie événementielle et familiale</h2>
+                <p>Nos services de photographie répondent aux besoins des particuliers comme des professionnels. Avec une approche discrète et soignée, nous capturons des instants authentiques, reflétant les émotions et la beauté des moments partagés. Notre objectif est de vous fournir des souvenirs visuels durables, qui retranscrivent fidèlement l'atmosphère de votre événement.</p>
+            </div>
+
+            <div class="photography-service-item">
+                <h2>Photographie d'entreprises</h2>
+                <p>Nos services s'étendent à la photographie d'entreprise, pour vos événements professionnels, vos lancements de produits et vos portraits corporate. Nous veillons à retranscrire l'image de votre société de façon professionnelle.</p>
+            </div>
+
+            <div class="photography-service-item">
+                <h2>Photographe de mariages et de familles</h2>
+                <p>Nous vous accompagnons pour immortaliser les plus beaux moments de votre mariage, de la préparation à la soirée en passant par les photos de couple et de famille.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="services-container">
+            <div class="service-card" style="animation-delay: 0.3s;">
+                <div class="service-image">
+                    <img src="photo.jpg" alt="Services de photographie">
+                </div>
+                <div class="service-content">
+                    <h2>Gwen Photography</h2>
+                    <p>Capturez vos moments les plus précieux avec notre service de photographie professionnelle.</p>
+                    <ul class="features-list">
+                        <li>Mariages et cérémonies</li>
+                        <li>Événements privés et corporate</li>
+                        <li>Séances portraits</li>
+                        <li>Retouches professionnelles</li>
+                        <li>Albums photo personnalisés</li>
+                    </ul>
+                    <a href="photo.html" class="cta-button">Découvrir nos services photo</a>
+                </div>
+            </div>
+
+            <div class="service-card" style="animation-delay: 0.6s;">
+                <div class="service-image">
+                    <img src="Festival-DJ-Lyon-28.jpg" alt="Services de DJ">
+                </div>
+                <div class="service-content">
+                    <h2>DJ Alex</h2>
+                    <p>Créez l'ambiance parfaite pour votre événement avec notre animation DJ professionnelle.</p>
+                    <ul class="features-list">
+                        <li>Mariages et soirées privées</li>
+                        <li>Événements d'entreprise</li>
+                        <li>Sonorisation professionnelle</li>
+                        <li>Éclairages et effets spéciaux</li>
+                        <li>Playlists personnalisées</li>
+                    </ul>
+                    <a href="dj.html" class="cta-button">Découvrir nos prestations DJ</a>
+                </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-area">
+        <div class="service-area-container">
+            <h2 class="service-area-title">Zone d'intervention</h2>
+            
+            <div class="cities-list">
+                <p class="cities-intro">Nous nous déplaçons dans un rayon de 150 km autour de Digoin, notamment à :</p>
+                <div class="cities-grid">
+                    <div class="city-item">
+                        <i class="fas fa-location-dot"></i>
+                        <span>Paray-le-Monial</span>
+                    </div>
+                    <div class="city-item">
+                        <i class="fas fa-location-dot"></i>
+                        <span>Montceau-les-Mines</span>
+                    </div>
+                    <div class="city-item">
+                        <i class="fas fa-location-dot"></i>
+                        <span>Mâcon</span>
+                    </div>
+                    <div class="city-item">
+                        <i class="fas fa-location-dot"></i>
+                        <span>Beaujeu</span>
+                    </div>
+                    <div class="city-item">
+                        <i class="fas fa-location-dot"></i>
+                        <span>Gueugnon</span>
+                    </div>
+                    <div class="city-item">
+                        <i class="fas fa-location-dot"></i>
+                        <span>Roanne</span>
+                    </div>
+                    <div class="city-item">
+                        <i class="fas fa-location-dot"></i>
+                        <span>Chalon-sur-Saône</span>
+                    </div>
+                    <div class="city-item">
+                        <i class="fas fa-location-dot"></i>
+                        <span>Auxerre</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d44183.31493753088!2d3.9827799511197916!3d46.48068225722054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f3e17ef5e2930d%3A0x4093cafcbe7fa70!2s71160%20Digoin!5e0!3m2!1sfr!2sfr!4v1710347161099!5m2!1sfr!2sfr&language=fr&region=FR"
+                    width="600"
+                    height="450"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="reviews-section">
+        <div class="reviews-container">
+            <h2 class="reviews-title">Nos avis clients</h2>
+            <div class="reviews-wrapper">
+                <div class="reviews-summary">
+                    <div class="average-rating">
+                        <div class="rating-text">Nouveau sur Google</div>
+                        <div class="rating-description">Soyez parmi les premiers à partager votre expérience !</div>
+                    </div>
+                </div>
+                <div class="review-cta">
+                    <a href="https://g.co/kgs/W1e5FyB" target="_blank" class="review-button" id="review-link">
+                        <i class="fas fa-star"></i>
+                        Laissez-nous votre avis sur Google
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <footer>
+        <p>&copy; 2024 DJ Alex et Gwen Photography - Tous droits réservés</p>
+  </footer>
+
+    <script>
+        // Menu toggle functionality
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Hide menu on scroll
+        let lastScroll = 0;
+        const nav = document.querySelector('.main-nav');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                nav.style.transform = 'translateY(0)';
+                return;
+            }
+            
+            if (currentScroll > lastScroll && !navMenu.classList.contains('active')) {
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Configuration Google Places
+        const PLACE_ID = 'ChIJDSkuX-Pj9EcRcPf6fPzK6QQ'; // Place ID temporaire pour le centre de Digoin
+        const API_KEY = 'YOUR_API_KEY'; // Remplacez par votre clé API Google Maps
+
+        // Fonction pour charger les avis
+        async function loadGoogleReviews() {
+            try {
+                // Simulation des données en attendant la création de la fiche Google My Business
+                const mockData = {
+                    result: {
+                        name: "DJ Alex et Gwen Photography",
+                        rating: 5.0,
+                        user_ratings_total: 0,
+                        reviews: [],
+                        photos: []
+                    }
+                };
+
+                updateReviewsSummary(mockData.result);
+                displayReviews(mockData.result.reviews);
+                updateReviewLink(PLACE_ID);
+            } catch (error) {
+                console.error("Erreur lors du chargement des avis:", error);
+            }
+        }
+
+        // Fonction pour mettre à jour le résumé des avis
+        function updateReviewsSummary(place) {
+            const ratingNumber = document.querySelector('.rating-number');
+            const ratingStars = document.querySelector('.rating-stars');
+            const ratingCount = document.querySelector('.rating-count');
+
+            if (place.rating) {
+                ratingNumber.textContent = place.rating.toFixed(1);
+                ratingStars.innerHTML = getStarRating(place.rating);
+                ratingCount.textContent = `${place.user_ratings_total} avis`;
+            }
+        }
+
+        // Fonction pour afficher les avis
+        function displayReviews(reviews) {
+            const container = document.getElementById('google-reviews');
+            container.innerHTML = '';
+
+            reviews.forEach(review => {
+                const reviewElement = createReviewElement(review);
+                container.appendChild(reviewElement);
+            });
+        }
+
+        // Fonction pour créer un élément d'avis
+        function createReviewElement(review) {
+            const reviewDiv = document.createElement('div');
+            reviewDiv.className = 'review-card';
+
+            reviewDiv.innerHTML = `
+                <div class="review-header">
+                    <div class="reviewer-avatar">
+                        <img src="${review.profile_photo_url}" alt="${review.author_name}">
+                    </div>
+                    <div class="reviewer-info">
+                        <div class="reviewer-name">${review.author_name}</div>
+                        <div class="review-date">${formatDate(review.time)}</div>
+                    </div>
+                </div>
+                <div class="review-rating">
+                    ${getStarRating(review.rating)}
+                </div>
+                <div class="review-text">${review.text}</div>
+            `;
+
+            return reviewDiv;
+        }
+
+        // Fonction pour générer les étoiles
+        function getStarRating(rating) {
+            const fullStar = '<i class="fas fa-star"></i>';
+            const halfStar = '<i class="fas fa-star-half-alt"></i>';
+            const emptyStar = '<i class="far fa-star"></i>';
+            
+            let stars = '';
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+
+            for (let i = 0; i < 5; i++) {
+                if (i < fullStars) {
+                    stars += fullStar;
+                } else if (i === fullStars && hasHalfStar) {
+                    stars += halfStar;
+                } else {
+                    stars += emptyStar;
+                }
+            }
+
+            return stars;
+        }
+
+        // Fonction pour formater la date
+        function formatDate(timestamp) {
+            const date = new Date(timestamp * 1000);
+            return date.toLocaleDateString('fr-FR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // Fonction pour mettre à jour le lien d'avis
+        function updateReviewLink(placeId) {
+            const reviewLink = document.getElementById('review-link');
+            reviewLink.href = `https://search.google.com/local/writereview?place_id=${placeId}`;
+        }
+
+        // Charger les avis au chargement de la page
+        document.addEventListener('DOMContentLoaded', loadGoogleReviews);
+    </script>
+</body>
+</html>
